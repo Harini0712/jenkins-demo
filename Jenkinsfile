@@ -11,10 +11,10 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_USER = "yourdockerhubusername"
+        DOCKER_HUB_USER = "harinimuruges"
         IMAGE_NAME      = "luxe-ecommerce"
         EC2_HOST        = "ec2-user@YOUR_EC2_PUBLIC_IP"
-        CONTAINER_NAME  = "luxe-app"
+        CONTAINER_NAME  = "luxe-con"
     }
 
     stages {
@@ -23,7 +23,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/YOURUSERNAME/luxe-ecommerce.git'
+                    url: 'https://github.com/Harini0712/jenkins-demo.git'
                 echo "Code pulled — commit: ${GIT_COMMIT}"
             }
         }
