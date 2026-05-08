@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LUXE — Premium Store</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">LUXE</div>
+  <ul class="nav-links">
+    <li><a href="#" class="active">Home</a></li>
+    <li><a href="#products">Shop</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="icon-btn" onclick="toggleSearch()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </button>
+    <button class="icon-btn" onclick="toggleCart()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- SEARCH BAR -->
+<div class="search-bar" id="searchBar">
+  <input type="text" placeholder="Search products…" id="searchInput" oninput="filterProducts()" />
+  <button onclick="toggleSearch()">✕</button>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-sub">New Collection 2025</p>
+    <h1 class="hero-title">Crafted for<br/><em>the refined</em></h1>
+    <p class="hero-desc">Discover timeless pieces curated with impeccable taste.</p>
+    <a href="#products" class="btn-primary">Explore Collection</a>
+  </div>
+ 
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories">
+  <div class="container">
+    <div class="category-grid">
+      <div class="category-item" onclick="filterByCategory('Apparel')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#2c1810,#6b3a2a)">👔</div>
+        <span>Apparel</span>
+      </div>
+      <div class="category-item" onclick="filterByCategory('Accessories')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#0d1b2a,#1b4965)">⌚</div>
+        <span>Accessories</span>
+      </div>
+      <div class="category-item" onclick="filterByCategory('Footwear')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">👟</div>
+        <span>Footwear</span>
+      </div>
+      <div class="category-item" onclick="filterByCategory('Beauty')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#3d0c02,#9c2727)">✨</div>
+        <span>Beauty</span>
+      </div>
+      <div class="category-item" onclick="filterByCategory('')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#1a1a1a,#444)">🛒</div>
+        <span>All</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products-section" id="products">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Featured Products</h2>
+      <div class="sort-controls">
+        <select onchange="sortProducts(this.value)">
+          <option value="default">Sort by</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="name">Name A–Z</option>
+        </select>
+      </div>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
+<!-- BANNER -->
+<section class="promo-banner">
+  <div class="promo-content">
+    <p class="promo-tag">Limited Offer</p>
+    <h2>Up to 40% Off<br/><em>Select Items</em></h2>
+    <a href="#products" class="btn-light">Shop Sale</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="about-text">
+      <p class="section-tag">Our Story</p>
+      <h2>Built on passion,<br/>shaped by craft.</h2>
+      <p>LUXE was founded in 2018 with one mission: to bring premium quality to everyday people without compromise. Every piece is sourced responsibly and curated by hand.</p>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+    <div class="about-stats">
+      <div class="stat"><span class="stat-num">12K+</span><span>Happy Clients</span></div>
+      <div class="stat"><span class="stat-num">320+</span><span>Products</span></div>
+      <div class="stat"><span class="stat-num">98%</span><span>Satisfaction</span></div>
+      <div class="stat"><span class="stat-num">40+</span><span>Countries</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <h2 class="section-title">Get in Touch</h2>
+    <form class="contact-form" onsubmit="submitForm(event)">
+      <div class="form-row">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+      </div>
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit" class="btn-primary">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-logo">LUXE</div>
+      <p>Premium lifestyle brand crafting beautiful essentials.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <ul><li><a href="#">New Arrivals</a></li><li><a href="#">Best Sellers</a></li><li><a href="#">Sale</a></li></ul>
+    </div>
+    <div>
+      <h4>Support</h4>
+      <ul><li><a href="#">FAQ</a></li><li><a href="#">Returns</a></li><li><a href="#">Shipping</a></li></ul>
+    </div>
+    <div>
+      <h4>Follow</h4>
+      <ul><li><a href="#">Instagram</a></li><li><a href="#">Twitter</a></li><li><a href="#">Pinterest</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 LUXE. All rights reserved.</div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-total">Total: <strong id="cartTotal">₹0</strong></div>
+    <button class="btn-primary full" onclick="checkout()">Checkout</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
