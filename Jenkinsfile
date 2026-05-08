@@ -13,7 +13,7 @@ pipeline {
     environment {
         DOCKER_HUB_USER = "harinimuruges"
         IMAGE_NAME      = "luxe-ecommerce"
-        EC2_HOST        = "ec2-user@YOUR_EC2_PUBLIC_IP"
+        EC2_HOST        = "ubuntu@16.176.143.37"
         CONTAINER_NAME  = "luxe-con"
     }
 
