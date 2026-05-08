@@ -62,24 +62,16 @@ pipeline {
 
         // STAGE 4 — Deploy to EC2
         stage('Deploy to EC2') {
-            steps {
-                sshagent(['ec2-ssh-key']) {
-                    sh """
-                        ssh -o StrictHostKeyChecking=no ${EC2_HOST} '
-                            docker pull ${DOCKER_HUB_USER}/${IMAGE_NAME}:${BUILD_NUMBER}
-                            docker stop ${CONTAINER_NAME} 2>/dev/null || true
-                            docker rm   ${CONTAINER_NAME} 2>/dev/null || true
-                            docker run -d \
-                                --name ${CONTAINER_NAME} \
-                                --restart unless-stopped \
-                                -p 80:80 \
-                                ${DOCKER_HUB_USER}/${IMAGE_NAME}:${BUILD_NUMBER}
-                        '
-                    """
-                }
-                echo "Deployed to EC2 — build #${BUILD_NUMBER}"
-            }
+    steps {
+        sshagent(['ec2-ssh-key']) {
+            sh """
+                ssh -o StrictHostKeyChecking=no ${EC2_HOST} '
+                    docker restart ${CONTAINER_NAME}
+                '
+            """
         }
+    }
+}
 
         // STAGE 5 — Verify running container
         stage('Verify') {
